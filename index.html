@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Leads - Carrera Moto</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <h1>Carrera Moto</h1>
+            <span class="subtitle">Dashboard de Leads</span>
+        </div>
+        <div class="date-filter">
+            <label for="month">Mes:</label>
+            <select id="month">
+                <option value="1">Enero</option>
+                <option value="2">Febrero</option>
+                <option value="3">Marzo</option>
+                <option value="4">Abril</option>
+                <option value="5">Mayo</option>
+                <option value="6">Junio</option>
+                <option value="7">Julio</option>
+                <option value="8">Agosto</option>
+                <option value="9">Septiembre</option>
+                <option value="10">Octubre</option>
+                <option value="11">Noviembre</option>
+                <option value="12">Diciembre</option>
+            </select>
+            <select id="year">
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="data-update-panel">
+            <button id="refresh-data" class="update-btn">Actualizar Datos</button>
+            <div class="last-update">Última actualización: <span id="last-update-time">-</span></div>
+        </div>
+
+        <div class="kpi-cards">
+            <div class="kpi-card">
+                <h3>Total de Leads</h3>
+                <div class="kpi-value" id="total-leads">0</div>
+                <div class="kpi-source">
+                    <div><span class="source-label">HubSpot:</span> <span id="hubspot-leads">0</span></div>
+                    <div><span class="source-label">Google Sheets:</span> <span id="sheets-leads">0</span></div>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <h3>Leads Sin Contactar</h3>
+                <div class="kpi-value" id="uncontacted-leads">0</div>
+                <div class="kpi-source">
+                    <div><span class="source-label">HubSpot:</span> <span id="hubspot-uncontacted">0</span></div>
+                    <div><span class="source-label">Google Sheets:</span> <span id="sheets-uncontacted">0</span></div>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <h3>Porcentaje Contactado</h3>
+                <div class="kpi-value" id="contacted-percentage">0%</div>
+                <div class="progress-bar">
+                    <div class="progress" id="contact-progress"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-card">
+                <h3>Evolución de Leads</h3>
+                <canvas id="leads-trend-chart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Distribución por Fuente</h3>
+                <canvas id="source-distribution-chart"></canvas>
+            </div>
+        </div>
+
+        <div class="leads-by-vendor">
+            <h3>Distribución por Vendedor</h3>
+            <table id="vendor-table">
+                <thead>
+                    <tr>
+                        <th>Vendedor</th>
+                        <th>Leads Asignados</th>
+                        <th>% del Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Se llenará dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para autenticación y configuración -->
+    <div id="config-modal" class="modal">
+        <div class="modal-content">
+            <h2>Configuración de APIs</h2>
+            <div class="api-config">
+                <h3>HubSpot API</h3>
+                <div class="form-group">
+                    <label for="hubspot-api-key">API Key:</label>
+                    <input type="password" id="hubspot-api-key">
+                </div>
+            </div>
+            <div class="api-config">
+                <h3>Google Sheets</h3>
+                <div class="form-group">
+                    <label for="sheets-id">ID del Documento:</label>
+                    <input type="text" id="sheets-id">
+                </div>
+                <div class="form-group">
+                    <label for="sheets-api-key">API Key:</label>
+                    <input type="password" id="sheets-api-key">
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button id="save-config">Guardar</button>
+                <button id="cancel-config">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="config/config.js"></script>
+    <script src="js/hubspot-api.js"></script>
+    <script src="js/sheets-api.js"></script>
+    <script src="js/chart-config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
