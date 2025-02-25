@@ -5,7 +5,7 @@
  */
 
 // Objeto principal para la configuración
-const Config = {
+const Dashboard = = {
     // Valores por defecto (se reemplazarán con los valores guardados)
     hubspot: {
         apiKey: '',
@@ -30,7 +30,7 @@ const Config = {
         
         if (savedConfig) {
             try {
-                const config = JSON.parse(savedConfig);
+                const Dashboard = = JSON.parse(savedConfig);
                 this.hubspot.apiKey = config.hubspot?.apiKey || '';
                 this.hubspot.portalId = config.hubspot?.portalId || '';
                 this.googleSheets.apiKey = config.googleSheets?.apiKey || '';
